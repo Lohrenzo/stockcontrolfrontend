@@ -121,7 +121,7 @@ const Login = ({fetchCategories, fetchProducts}) => {
     
     return (
         <section className="bg-gray-50 dark:bg-gray-900 h-screen flex items-center justify-center">
-                <div className="rounded-lg p-6 xl:w-[35%] lg:w-[40%] md:w-[60%] sm:w-[70%] w-[80%] shadow dark:border dark:bg-gray-800 dark:border-gray-700">
+                <div className="rounded-lg p-6 xl:w-[35%] lg:w-[40%] md:w-[60%] sm:w-[70%] w-[80%] shadow-lg dark:border dark:bg-gray-800 dark:border-gray-700">
                         <h1 className="text-xl mb-10 text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Sign in to your account
                         </h1>
@@ -131,6 +131,7 @@ const Login = ({fetchCategories, fetchProducts}) => {
                                 label="Username"
                                 className="mb-4 h-[35px]"
                                 onChange={handleUsernameChange}
+                                required
                             ></TEInput>
                                     
                             <div className='grid grid-cols-1 w-full h-[35px] relative'>
@@ -140,12 +141,13 @@ const Login = ({fetchCategories, fetchProducts}) => {
                                     label="Password"
                                     className="mb-4 w-full h-[35px]"
                                     onChange={handlePasswordChange}
+                                    required
                                 ></TEInput>
                                 <span className="flex justify-center items-center absolute cursor-pointer pr-1 right-0 inset-y-0 text-[1.6rem] text-gray-500 dark:text-gray-300" onClick={handleShowPassword}>
                                     {type === "password" ? <IoMdEye /> : <IoMdEyeOff />}
                                 </span>
-                            </div>
-                            <div className="flex items-center justify-between">
+                            </div><br />
+                            {/* <div className="flex items-center justify-between">
                                 <div className="flex items-start">
                                     <div className="flex items-center h-5">
                                         <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="" />
@@ -154,12 +156,12 @@ const Login = ({fetchCategories, fetchProducts}) => {
                                         <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                                     </div>
                                 </div>
-                                {/* <Link to="" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</Link> */}
-                            </div>
+                                <Link to="" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</Link>
+                            </div> */}
                             <TERipple rippleColor='success' className="w-full h-fit max-h-fit">
-                                <Link onClick={handleLogin} className="block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs text-center font-medium uppercase leading-normal text-white hover:text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                                <button type='submit' disabled={loginDetails.username.length === 0 || loginDetails.password.length === 0} onClick={handleLogin} className="block w-full rounded disabled:opacity-50 bg-primary px-6 pb-2 pt-2.5 text-xs text-center font-medium uppercase leading-normal text-white hover:text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
                                     Sign in
-                                </Link>
+                                </button>
                             </TERipple>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Don't have an account yet? <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>

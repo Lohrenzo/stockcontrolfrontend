@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 // Reacr Router Dom
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // React-cookie
 import { useCookies } from "react-cookie";
@@ -11,6 +11,7 @@ import { MdSearch } from "react-icons/md";
 
 const NavBar = ({setAddNewPopUp, handleSearchChange, searchKeyword, getCookie, userIdCookie, setUserIdCookie, usernameCookie, setUsernameCookie, roleCookie, setRoleCookie, setAuthTokenCookie}) => {
     const [cookies, removeCookie] = useCookies(["username", "userId", "authToken", "role"]);
+    const location = useLocation();
 
     // const [usernameCookie, setUsernameCookie] = useState(null);
     // const [roleCookie, setRoleCookie] = useState(null);
@@ -43,10 +44,21 @@ const NavBar = ({setAddNewPopUp, handleSearchChange, searchKeyword, getCookie, u
                     Lo'Renzo
                 </Link>
 
-                <div className='relative flex items-center justify-center w-[50%]'>
+                {location.pathname === '/' && ( // Render search input only on the homepage
+                    <div className='relative flex items-center justify-center w-[50%]'>
+                        <input
+                            onChange={handleSearchChange}
+                            value={searchKeyword}
+                            className='px-2 bg-gray-50 placeholder-gray-600 text-gray-900 sm:text-sm rounded-lg focus:bg-[#d5d5d5ad] outline-none focus:outline-none w-full transition-all duration-100 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:bg-[#2b2e32ad] dark:focus:outline-none h-[35px]'
+                            placeholder='Search By Description'
+                        />
+                        <MdSearch className='absolute right-2 opacity-70 text-[1.6rem] text-gray-500 dark:text-gray-300' />
+                    </div>
+                )}
+                {/* <div className='relative flex items-center justify-center w-[50%]'>
                     <input onChange={handleSearchChange} value={searchKeyword} className='px-2 bg-gray-50 placeholder-gray-600 text-gray-900 sm:text-sm rounded-lg focus:bg-[#d5d5d5ad] outline-none focus:outline-none w-full transition-all duration-100 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:bg-[#2b2e32ad] dark:focus:outline-none h-[35px]' placeholder='Search By Description' />
                     <MdSearch className='absolute right-2 opacity-70 text-[1.6rem] text-gray-500 dark:text-gray-300' />
-                </div>
+                </div> */}
 
                 {/* {usernameCookie !== (null || "undefined") && <Link className='text-white hover:text-slate-300 transition-all duration-200' to={`/profile/${userIdCookie}`}><p>{usernameCookie !== (null || "undefined") && `Hello ${usernameCookie}`}</p></Link>} */}
                 {!usernameCookie ? "" : <Link className='text-white hover:text-slate-300 transition-all duration-200' to={`/profile/${userIdCookie}`}><p>{usernameCookie !== (null || "undefined") && `Hello ${usernameCookie}`}</p></Link>}
